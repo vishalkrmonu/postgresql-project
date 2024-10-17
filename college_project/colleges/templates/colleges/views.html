@@ -1,0 +1,24 @@
+{% comment %} <!-- colleges/templates/colleges/views.html -->
+<h1>Colleges</h1>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Logo</th>
+        <th>Profile</th>
+        <th>Instructions</th>
+        <th>Actions</th>
+    </tr>
+    {% for college in colleges %}
+    <tr>
+        <td>{{ college.college_name }}</td>
+        <td><img src="{{ college.college_logo }}" alt="Logo" width="50"></td>
+        <td>{{ college.college_profile }}</td>
+        <td>{{ college.instructions }}</td>
+        <td>
+            <a href="{% url 'update_college' college.id %}">Edit</a>
+            <a href="{% url 'delete_college' college.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'add_college' %}">Add New College</a> {% endcomment %}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College List</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            width: 100px; /* Adjust the image size as needed */
+        }
+        a{
+            background-color: rgb(31, 31, 133);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        a:hover{
+            background-color: rgb(141, 5, 5);
+        }
+        .del{
+            background-color: rgb(31, 31, 133);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            padding: 5px;
+            margin-top:8px ;
+        }
+       
+        .del:hover{
+            background-color: rgb(141, 5, 5);
+        }
+        h2{
+            text-align: center;
+            background-color: rgb(31, 31, 133);
+            color: white;
+            border-radius: 5px;
+            padding: 5px;
+            width: 100%;
+
+        }
+       .heading{
+        margin-bottom: 8px;
+       }
+    </style>
+</head>
+<body>
+    <div class="heading">
+        <h2>College Details</h2>
+        <a href="{% url 'add_college' %}" class="addcollege">Add College</a>
+       
+
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>College Name</th>
+                <th>Logo</th>
+                <th>College Profile</th>
+                <th>Instructions</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for college in colleges %}
+                <tr>
+                    <td>{{ college.college_name }}</td>
+                    <td><img src="{{ college.college_logo.url }}" alt="{{ college.college_name }}"></td>
+                    <td>{{ college.college_profile }}</td>
+                    <td>{{ college.instructions }}</td>
+                    <td>
+                        <a href="{% url 'update_college' college.pk %}">Edit</a>
+                        
+                        <form action="{% url 'delete_college' college.pk %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                           
+                            <button type="submit" class="del">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

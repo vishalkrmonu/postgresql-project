@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update College</title>
+</head>
+<style>
+    h2{
+        text-align: center;
+        justify-content: center;
+        background-color: rgb(31, 31, 133);
+        color: white;
+        border-radius: 5px;
+        padding: 5px;
+
+    }
+    .container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn{
+        background-color: rgb(31, 31, 133);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            padding: 6px;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin: 8px;
+
+            
+        }
+        .btn:hover{
+            background-color: rgb(141, 5, 5);
+        }
+</style>
+<body>
+    <h2>Update College</h2>
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Update</button>
+            <a href="{% url 'home' %}" class="btn">Back to Home</a>
+        </form>
+
+    </div>
+</body>
+</html>
